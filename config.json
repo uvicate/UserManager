@@ -6,5 +6,6 @@
 		"manage": "",
 		"profile": ""
 	},
-	"modules_path": "modules/"
+	"modules_path": "modules/",
+	"rest": "http:localhost/Users/api/v1/"
 }
