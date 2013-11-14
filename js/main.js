@@ -74,7 +74,12 @@ window.dhtmlHistory.create({
 
 	Main.prototype.verifyIdentity = function(callback) {
 		callback = (typeof callback === 'function') ? callback : function(){};
-		callback(false);
+		var j = {
+			url: this.a._data.rest+'/Members',
+			mode: 'GET',
+			div: undefined
+		}
+		new Vi(j).ajax(callback);
 	};
 
 	Main.prototype.handleURL = function(url) {
