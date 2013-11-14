@@ -1,0 +1,10 @@
+{
+	"modules": {
+		"login": "",
+		"backend": "",
+		"configuration": "",
+		"manage": "",
+		"profile": ""
+	},
+	"modules_path": "modules/"
+}

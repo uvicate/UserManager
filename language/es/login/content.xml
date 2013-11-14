@@ -1,0 +1,11 @@
+<content>
+	<dom>
+		<login>Inicia sesión</login>
+		<email>Correo</email>
+		<password>Contraseña</password>
+		<button>Iniciar sesión</button>
+
+		<error-login>Acceso no autorizado</error-login>
+		<error-description>Verifica que tu usuario y/o contraseña sean correctos</error-description>
+	</dom>
+</content>
