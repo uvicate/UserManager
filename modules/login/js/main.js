@@ -31,7 +31,16 @@
 			data[id] = input.value;
 		}
 
-		/*new Vi({url:'verifyEntry.php', data:data, response:'object'}).server(function(r){
+
+		var j = {
+			url: this.a._data.rest+'Members/',
+			mode: 'POST',
+			div: undefined,
+			cache: true,
+			data: data,
+			response: 'object'
+		}
+		new Vi(j).ajax(function(r){
 			btn.removeAttribute('disabled');
 			if(r.success === true){
 				//User is redirected to the backend of the platform.
@@ -41,7 +50,7 @@
 				var e = document.getElementById('errors');
 				e.style.display = 'block';
 			}
-		});*/
+		});
 	}
 
 	var i = new Module(App);

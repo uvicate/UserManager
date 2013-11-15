@@ -56,10 +56,10 @@ window.dhtmlHistory.create({
 			var initialModule = dhtmlHistory.getCurrentLocation();
 			var module = (initialModule === '') ? 'backend' : initialModule;
 			t.verifyIdentity(function(r){
-				switch(r){
+				switch(r.success){
 					case true:
 						t.loadCategory('backend', function(){
-							if(module !== 'backend'){
+							if(module !== 'backend' && module !== 'login'){
 								t.loadCategory(module);
 							}
 						});
@@ -75,9 +75,12 @@ window.dhtmlHistory.create({
 	Main.prototype.verifyIdentity = function(callback) {
 		callback = (typeof callback === 'function') ? callback : function(){};
 		var j = {
-			url: this.a._data.rest+'/Members',
+			url: this.a._data.rest+'Members/',
 			mode: 'GET',
-			div: undefined
+			div: undefined,
+			cache: true,
+			response: 'object',
+			headerValue: 'application/json'
 		}
 		new Vi(j).ajax(callback);
 	};
