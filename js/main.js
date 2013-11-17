@@ -58,11 +58,8 @@ window.dhtmlHistory.create({
 			t.verifyIdentity(function(r){
 				switch(r.success){
 					case true:
-						t.loadCategory('backend', function(){
-							if(module !== 'backend' && module !== 'login'){
-								t.loadCategory(module);
-							}
-						});
+						t.a._url = module;
+						t.loadCategory('backend');
 					break;
 					case false:
 						t.loadCategory('login');
@@ -114,6 +111,7 @@ window.dhtmlHistory.create({
 	};
 
 	Main.prototype.loadCategory = function(category, callback) {
+
 		var url = this.handleURL(category);
 		if(category !== 'backend'){
 			dhtmlHistory.add(category, {message: "Module " +url[0]});

@@ -10,6 +10,10 @@
 			t.main_btn_func();
 			t.main_mnu_func();
 			t.build_menu();
+
+			if(t.a._url !== 'backend' && t.a._url !== 'login'){
+				window.Application.loadCategory(t.a._url);
+			}
 		});
 	};
 
