@@ -114,11 +114,9 @@ window.dhtmlHistory.create({
 	};
 
 	Main.prototype.loadCategory = function(category, callback) {
-		console.log('category', category);
 		var url = this.handleURL(category);
 		if(category !== 'backend'){
 			dhtmlHistory.add(category, {message: "Module " +url[0]});
-
 			this.activeMenuCategory(url[0]);
 		}
 
