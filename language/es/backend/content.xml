@@ -1,4 +1,8 @@
 <content>
 	<dom>
+		<dashboard>Tablero</dashboard>
+		<configuration>Configuración</configuration>
+		<manage>Administrar</manage>
+		<profile>Perfil</profile>
 	</dom>
 </content>
