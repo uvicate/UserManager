@@ -1,11 +1,13 @@
 {
 	"modules": {
-		"login": "",
-		"backend": "",
-		"configuration": "",
-		"manage": "",
-		"profile": ""
+		"login": {},
+		"backend": {},
+		"dashboard": {"i": "glyphicon glyphicon-home"},
+		"manage": {"i": "glyphicon glyphicon-list"},
+		"configuration": {"i": "glyphicon glyphicon-cog"},
+		"profile": {"i": "glyphicon glyphicon-user"}
 	},
 	"modules_path": "modules/",
-	"rest": "http://victor/Desarrollos/Users/api/v1/"
+	"rest": "http://victor/Desarrollos/Users/api/v1/",
+	"id": "user"
 }
