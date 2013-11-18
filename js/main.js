@@ -42,7 +42,7 @@ window.dhtmlHistory.create({
 			modules[k] = {nombre: k, url:r.modules_path};
 		}
 
-		var j = {name: 'Dress code', modules:modules, div:'#content', currentLang: lang};
+		var j = {name: 'User Manager', modules:modules, div:'#content', currentLang: lang};
 		this.a = new AppSystem(j);
 		App = this.a;
 

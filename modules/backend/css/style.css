@@ -44,3 +44,7 @@
 #main-menu>li>a {
 	cursor: pointer;
 }
+
+#image-signed-in {
+	margin: 5px;
+}

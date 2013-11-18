@@ -5,7 +5,8 @@
 
 		var t = this;
 		this.getUserData(function(r){
-			console.log(r);
+			t.render_personalinfo(r);
+
 			t.fill_menu_helper();
 			t.main_btn_func();
 			t.main_mnu_func();
@@ -31,6 +32,31 @@
 		}
 
 		new Vi(j).ajax(callback);
+	};
+
+	Module.prototype.render_personalinfo = function(data) {
+		console.log(data);
+		this.a._user = data;
+
+		var holder = document.getElementById('signed-in-as');
+		var t = data.fullname
+		holder.innerHTML = '';
+		holder.appendChild(document.createTextNode(t));
+
+		var img = this.getGravatarImg(data.basic.email, 40);
+		var imgholder = document.getElementById('image-signed-in');
+		imgholder.src = img;
+	};
+
+	Module.prototype.getGravatarImg = function(email, size) {
+		var email = email;
+		var hash = md5(email);
+
+		var url = 'http://www.gravatar.com/avatar/' + hash;
+
+		url += '?s=' + size;
+
+		return url;
 	};
 
 	Module.prototype.fill_menu_helper = function() {

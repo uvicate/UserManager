@@ -4,5 +4,7 @@
 		<configuration>Configuración</configuration>
 		<manage>Administrar</manage>
 		<profile>Perfil</profile>
+
+		<signed-in>Sesión iniciada como </signed-in>
 	</dom>
 </content>
