@@ -36,9 +36,9 @@
 	height: auto;
 	box-shadow: 3px -2px 5px -3px #ccc;
 
-	transition: opacity 218ms;
-	-webkit-transition: opacity 218ms;
-	-moz-transition: opacity 218ms;
+	transition: all 218ms;
+	-webkit-transition: all 218ms;
+	-moz-transition: all 218ms;
 }
 
 #main-menu>li>a {
