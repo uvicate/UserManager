@@ -1,5 +1,15 @@
 <content>
 	<dom>
 		<fullname>Nombre completo</fullname>
+		<operations>Ver</operations>
+
+		<basic>Datos básicos</basic>
+
+		<name>Nombre</name>
+		<lastname>Apellido</lastname>
+		<username>Nombre de usuario</username>
+		<email>Correo elecrónico</email>
+
+		<save-btn>Guardar cambios </save-btn>
 	</dom>
 </content>
