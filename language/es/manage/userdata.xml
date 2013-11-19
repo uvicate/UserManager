@@ -1,4 +1,5 @@
 <content>
 	<dom>
+		<delete-btn>Borrar usuario </delete-btn>
 	</dom>
 </content>

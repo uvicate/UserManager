@@ -141,13 +141,39 @@
 		this.explore_usr_data(j);
 
 		var btn = document.createElement('button');
-		btn.className = 'btn btn-primary pull-right';
+		btn.id = 'save-btn';
+		btn.className = 'btn btn-primary pull-right ladda-button';
+		btn.setAttribute('data-style', 'expand-right');
+
 		var text = this.a.current.getText('save-btn');
-		btn.appendChild(document.createTextNode(text));
+		var span = document.createElement('span');
+		span.className = 'ladda-label';
+		span.setAttribute('data-ltag', 'save-btn');
+		span.appendChild(document.createTextNode(text));
+		btn.appendChild(span);
 		var icon = document.createElement('i');
 		icon.className = 'glyphicon glyphicon-ok';
 		btn.appendChild(icon);
 		container.appendChild(btn);
+
+		var l = Ladda.create( btn );
+
+		container._t = this;
+		container.addEventListener('submit', function(e){
+			if(e.preventDefault){
+				e.preventDefault();
+			}
+
+			e.returnValue = false;
+
+			l.start();
+			btn.setAttribute('disabled', 'disabled');
+
+			this._t.update_user(this._user, function(){
+				btn.removeAttribute('disabled');
+				l.stop();
+			});
+		}, false);
 	};
 
 	Module.prototype.explore_usr_data = function(j) {
@@ -174,6 +200,7 @@
 
 	Module.prototype.sub_user_data = function(key) {
 		var container = document.createElement('div');
+		container.setAttribute('data-subcontainer', key);
 		var title = document.createElement('h2');
 		title.setAttribute('data-ltag', key);
 		var t = this.a.current.getText(key);
@@ -210,6 +237,57 @@
 
 			container.appendChild(main);
 		}
+	};
+
+	Module.prototype.update_user = function(user, callback) {
+		callback = (typeof callback === 'function') ? callback : function(){};
+
+		var newdata = this.get_user_local_data();
+
+		if(JSON.stringify(user) !== JSON.stringify(newdata)){
+			var j = {
+				url: this.a._data.rest+'Users/'+user.id,
+				mode: 'PUT',
+				div: undefined,
+				cache: true,
+				response: 'object',
+				data: newdata.basic
+			}
+
+			var t = this;
+			new Vi(j).ajax(callback);
+		}else{
+			callback();
+		}
+	};
+
+	Module.prototype.get_user_local_data = function() {
+		var container = document.getElementById('user-info');
+		var inputs = container.querySelectorAll('.form-control');
+
+		var data = {};
+
+		for(var i = 0, len = inputs.length; i < len; i++){
+			var target = data;
+			var input = inputs[i];
+			var parentkey = input.parentNode.parentNode.parentNode;
+			console.log(parentkey, parentkey.getAttribute('data-subcontainer'));
+			if(parentkey.getAttribute('data-subcontainer')){
+				parentkey = parentkey.getAttribute('data-subcontainer');
+				if(!data.hasOwnProperty(parentkey)){
+					data[parentkey] = {};
+				}
+
+				target = data[parentkey];
+			}
+
+			var name = input.name;
+			var value = input.value;
+
+			target[name] = value;
+		}
+
+		return data;
 	};
 
 	Module.prototype.loadSubFile = function(file, callback) {
