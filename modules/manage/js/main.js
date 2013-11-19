@@ -11,7 +11,16 @@
 			translate: {load: true}
 		}
 
-		this.init_users();	
+		this.init_users();
+
+		var newbtn = document.getElementById('new-usr-btn');
+		newbtn._t = this;
+		newbtn.addEventListener('click', function(){
+			var t = this._t;
+			this._t.loadSubFile('newuser', function(){
+				t.prepareNewUser();
+			});
+		}, false);
 	}
 
 	Module.prototype.init_users = function() {
@@ -319,6 +328,47 @@
 		}
 
 		return data;
+	};
+
+	Module.prototype.prepareNewUser = function() {
+		var keys = {
+			name: {t: 'text'},
+			lastname: {t: 'text'},
+			email: {t: 'email'},
+			username: {t: 'text'},
+			password: {t: 'password'},
+			password_2: {t: 'password'}
+		}
+
+		var container = document.getElementById('user-info');
+
+		var mainkeys = Object.keys(keys);
+		for(var i = 0, len = mainkeys.length; i < len; i++){
+			var key = mainkeys[i];
+			var main = document.createElement('div');
+			main.className = 'form-group';
+			var label = document.createElement('label');
+			label.setAttribute('for', 'input-'+key);
+			label.className = 'col-sm-4 control-label';
+			label.setAttribute('data-ltag', key);
+			var t = this.a.current.getText(key);
+			label.appendChild(document.createTextNode(t));
+			main.appendChild(label);
+
+			var sub = document.createElement('div');
+			sub.className = 'col-sm-8';
+			main.appendChild(sub);
+
+			var input = document.createElement('input');
+			input.type = keys[key].t;
+			input.className = 'form-control';
+			input.name = key;
+			input.id = 'input-'+key;
+
+			sub.appendChild(input);
+
+			container.appendChild(main);
+		}
 	};
 
 	Module.prototype.loadSubFile = function(file, callback) {

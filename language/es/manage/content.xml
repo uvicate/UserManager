@@ -9,7 +9,11 @@
 		<lastname>Apellido</lastname>
 		<username>Nombre de usuario</username>
 		<email>Correo elecrónico</email>
+		<password>Contraseña</password>
+		<password_2>Vuelva a escribir la contraseña</password_2>
 
+		<new-btn>Nuevo usuario </new-btn>
+		
 		<save-btn>Guardar cambios </save-btn>
 	</dom>
 </content>
