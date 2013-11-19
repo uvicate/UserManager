@@ -274,8 +274,10 @@
 				headerValue: 'application/json'
 			}
 
+			var t = this._t;
 			new Vi(j).ajax(function(){
 				l.stop();
+				t.init_users();
 			});
 		}, false);
 	};
@@ -396,8 +398,12 @@
 					data: data
 				}
 
-				new Vi(j).ajax(function(){
-					l.stop();
+				var t = this._t;
+				new Vi(j).ajax(function(r){
+					if(r !== null){
+						t.init_users();
+						l.stop();
+					}
 				});
 			}
 		}, false);
