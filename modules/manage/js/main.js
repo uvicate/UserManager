@@ -11,11 +11,15 @@
 			translate: {load: true}
 		}
 
+		this.init_users();	
+	}
+
+	Module.prototype.init_users = function() {
 		var t = this;
 		this.get_users(function(r){
 			t.render_users(r);
 		});
-	}
+	};
 
 	Module.prototype.get_users = function(callback) {
 		var j = {
@@ -172,8 +176,11 @@
 			this._t.update_user(this._user, function(){
 				btn.removeAttribute('disabled');
 				l.stop();
+
 			});
 		}, false);
+
+		this.remove_user(user);
 	};
 
 	Module.prototype.explore_usr_data = function(j) {
@@ -239,6 +246,31 @@
 		}
 	};
 
+	Module.prototype.remove_user = function(user) {
+		var btn = document.getElementById('save-btn');
+		btn._user = user;
+		btn._t = this;
+
+		var l = Ladda.create( btn );
+		
+		btn.addEventListener('click', function(){
+			l.start();
+
+			var j = {
+				url: this_t.a._data.rest+'Users/'+this._user.id,
+				mode: 'DELETE',
+				div: undefined,
+				cache: true,
+				response: 'object',
+				headerValue: 'application/json'
+			}
+
+			new Vi(j).ajax(function(){
+				l.stop();
+			});
+		}, false);
+	};
+
 	Module.prototype.update_user = function(user, callback) {
 		callback = (typeof callback === 'function') ? callback : function(){};
 
@@ -271,7 +303,6 @@
 			var target = data;
 			var input = inputs[i];
 			var parentkey = input.parentNode.parentNode.parentNode;
-			console.log(parentkey, parentkey.getAttribute('data-subcontainer'));
 			if(parentkey.getAttribute('data-subcontainer')){
 				parentkey = parentkey.getAttribute('data-subcontainer');
 				if(!data.hasOwnProperty(parentkey)){
