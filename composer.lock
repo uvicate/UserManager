@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c0b3343cfd187aeb5de86f2f76112f3b",
+    "hash": "548ca3d199b76c6ff7f66f1ae22b5fb4",
     "packages": [
         {
             "name": "twitter/bootstrap",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "27b62d39e2ba62e2d70ef2f5322edd584adc726e"
+                "reference": "2172e2ea8a79f8c5d43863d83ff31b50abb391a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/27b62d39e2ba62e2d70ef2f5322edd584adc726e",
-                "reference": "27b62d39e2ba62e2d70ef2f5322edd584adc726e",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/2172e2ea8a79f8c5d43863d83ff31b50abb391a0",
+                "reference": "2172e2ea8a79f8c5d43863d83ff31b50abb391a0",
                 "shasum": ""
             },
             "type": "library",
@@ -45,7 +45,50 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-11-14 09:14:06"
+            "time": "2013-11-19 03:29:08"
+        },
+        {
+            "name": "uvicate/ladda",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uvicate/Ladda.git",
+                "reference": "acc4dcf4f3f0adb606e76fff1f08601fa9cc6494"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uvicate/Ladda/zipball/acc4dcf4f3f0adb606e76fff1f08601fa9cc6494",
+                "reference": "acc4dcf4f3f0adb606e76fff1f08601fa9cc6494",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Quiroz",
+                    "email": "victorhqc@gmail.com",
+                    "homepage": "http://victorhqc.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Hakim El Hattab",
+                    "email": "hakim.elhattab@gmail.com",
+                    "homepage": "http://hakim.se",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Buttons with built-in loading indicators",
+            "homepage": "https://github.com/uvicate/Ladda",
+            "keywords": [
+                "button",
+                "css",
+                "javascript",
+                "loading"
+            ],
+            "time": "2013-11-19 18:23:05"
         },
         {
             "name": "uvicate/webapp",
@@ -93,6 +136,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "uvicate/webapp": 20,
+        "uvicate/ladda": 20,
         "twitter/bootstrap": 20
     },
     "platform": [
