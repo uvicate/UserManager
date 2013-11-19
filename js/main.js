@@ -173,5 +173,16 @@ window.dhtmlHistory.create({
 		return l;
 	};
 
+	Main.prototype.getGravatarImg = function(email, size) {
+		var email = email;
+		var hash = md5(email);
+
+		var url = 'http://www.gravatar.com/avatar/' + hash;
+
+		url += '?s=' + size;
+
+		return url;
+	};
+
 	window.Application = new Main();
 })();
