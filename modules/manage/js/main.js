@@ -266,7 +266,7 @@
 			l.start();
 
 			var j = {
-				url: this_t.a._data.rest+'Users/'+this._user.id,
+				url: this._t.a._data.rest+'Users/'+this._user.id,
 				mode: 'DELETE',
 				div: undefined,
 				cache: true,
@@ -369,6 +369,38 @@
 
 			container.appendChild(main);
 		}
+
+		var form = document.getElementById('new-form-user');
+		form._t = this;
+		form.addEventListener('submit', function(e){
+			if(e.preventDefault){
+				e.preventDefault();
+			}
+
+			e.returnValue = false;
+
+			var btn = document.getElementById('new-btn-usr');
+			var l = Ladda.create( btn );
+
+			var data = this._t.get_user_local_data();
+
+			if(data.password === data.password_2){
+				l.start();
+
+				var j = {
+					url: this._t.a._data.rest+'Users/create',
+					mode: 'POST',
+					div: undefined,
+					cache: true,
+					response: 'object',
+					data: data
+				}
+
+				new Vi(j).ajax(function(){
+					l.stop();
+				});
+			}
+		}, false);
 	};
 
 	Module.prototype.loadSubFile = function(file, callback) {
