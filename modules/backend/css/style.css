@@ -48,3 +48,8 @@
 #image-signed-in {
 	margin: 5px;
 }
+
+.dropdown-logout {
+	float: left;
+	margin: 15px 0 15px -10px;
+}

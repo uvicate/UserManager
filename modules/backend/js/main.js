@@ -11,11 +11,35 @@
 			t.main_btn_func();
 			t.main_mnu_func();
 			t.build_menu();
+			t.logout_init();
 
 			if(t.a._url !== 'backend' && t.a._url !== 'login'){
 				window.Application.loadCategory(t.a._url);
 			}
 		});
+	};
+
+	Module.prototype.logout_init = function() {
+		var elm = document.getElementById('logout');
+		elm._t = this;
+		elm.addEventListener('click', function(){
+			this._t.logout(function(){
+				location.reload();
+			});
+		}, false);
+	};
+
+	Module.prototype.logout = function(callback) {
+		var j = {
+			url: this.a._data.rest+'Members/',
+			mode: 'DELETE',
+			div: undefined,
+			cache: true,
+			response: 'object',
+			headerValue: 'application/json'
+		}
+
+		new Vi(j).ajax(callback);
 	};
 
 	Module.prototype.getUserData = function(callback) {

@@ -5,6 +5,7 @@
 		<manage>Administrar</manage>
 		<profile>Perfil</profile>
 
-		<signed-in>Sesión iniciada como </signed-in>
+		<signed-in>Sesión iniciada como</signed-in>
+		<logout>Cerrar sesión</logout>
 	</dom>
 </content>
