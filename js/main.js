@@ -9,6 +9,15 @@ window.dhtmlHistory.create({
 	}
 });
 
+jso_configure({
+	"uvicate": {
+		client_id: "victor",
+		redirect_uri: "http://victor/Desarrollos/UserManager/",
+		authorization: "http://victor/Desarrollos/Users/oauth/2/login.php",
+		isDefault: true
+	}
+});
+
 (function(){
 	"use strict";
 	var Main = function(){
@@ -45,6 +54,7 @@ window.dhtmlHistory.create({
 		var j = {name: 'User Manager', modules:modules, div:'#content', currentLang: lang};
 		this.a = new AppSystem(j);
 		App = this.a;
+		this.a.loaded = false;
 
 		this.a._data = r;
 		var t = this;
@@ -54,8 +64,10 @@ window.dhtmlHistory.create({
 
 		this.a.init(function(){
 			var initialModule = dhtmlHistory.getCurrentLocation();
+			console.log('iniciando se detectó', initialModule);
 			var module = (initialModule === '') ? 'backend' : initialModule;
-			t.verifyIdentity(function(r){
+			t.verifyAccess(function(r){
+				console.log('verificando acceso', r);
 				switch(r.success){
 					case true:
 						t.a._url = module;
@@ -69,35 +81,17 @@ window.dhtmlHistory.create({
 		});
 	};
 
-	Main.prototype.verifyIdentity = function(callback) {
-		jso_configure({
-			"uvicate": {
-				client_id: "victor",
-				redirect_uri: "http://victor/Desarrollos/UserManager/",
-				authorization: "http://victor/Desarrollos/Users/oauth/2/login.php",
-				isDefault: true
-				}
-		});
-
-		 jso_ensureTokens({
-			// "facebook": ["read_stream"],
-			"uvicate": [],
-			// "instagram": ["basic", "likes"]
-		});
-
-		jso_dump();
-
-		var t = this;
-		$.oajax({
+	Main.prototype.verifyAccess = function(callback) {
+		var j = {
 			url: this.a._data.rest+'Members/',
-			jso_provider: "uvicate",
-			jso_allowia: true,
-			jso_scopes: ["profile"],
-			dataType: 'json',
-			success: function(data) {
-				callback(data);
-			}
-		});
+			mode: 'GET',
+			div: undefined,
+			cache: true,
+			response: 'object',
+			headerValue: 'application/json'
+		}
+
+		new Vi(j).ajax(callback);
 	};
 
 	Main.prototype.handleURL = function(url) {
@@ -106,7 +100,8 @@ window.dhtmlHistory.create({
 	};
 
 	Main.prototype.handleHistory = function(newLocation, historyData) {
-		if(typeof Application.a.current === 'object'){
+		console.log('loaded', Application.a.loaded);
+		if(typeof Application.a.loaded === false){
 			Application.loadCategory(newLocation);
 		}
 	};
@@ -129,6 +124,7 @@ window.dhtmlHistory.create({
 	};
 
 	Main.prototype.loadCategory = function(category, callback) {
+		console.log('loading', category);
 
 		var url = this.handleURL(category);
 		if(category !== 'backend'){

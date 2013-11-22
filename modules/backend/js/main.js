@@ -13,7 +13,9 @@
 			t.build_menu();
 			t.logout_init();
 
-			if(t.a._url !== 'backend' && t.a._url !== 'login'){
+			t.a.loaded = true;
+
+			if(t.a._url.match(/(backend)/gi) == null && t.a._url.match(/(login)/gi) === null){
 				window.Application.loadCategory(t.a._url);
 			}
 		});
@@ -45,11 +47,17 @@
 	Module.prototype.getUserData = function(callback) {
 		callback = (typeof callback === 'function') ? callback : function(){};
 
+		 /*jso_ensureTokens({
+			"uvicate": []
+		});*/
+
+		jso_dump();
+
 		var id = getCookie(this.a._data.id);
 		$.oajax({
 			url: this.a._data.rest+'Users/'+id,
 			jso_provider: "uvicate",
-			jso_allowia: true,
+			jso_allowia: false,
 			jso_scopes: ["profile"],
 			dataType: 'json',
 			success: function(data) {
