@@ -64,10 +64,8 @@ jso_configure({
 
 		this.a.init(function(){
 			var initialModule = dhtmlHistory.getCurrentLocation();
-			console.log('iniciando se detectó', initialModule);
 			var module = (initialModule === '') ? 'backend' : initialModule;
 			t.verifyAccess(function(r){
-				console.log('verificando acceso', r);
 				switch(r.success){
 					case true:
 						t.a._url = module;

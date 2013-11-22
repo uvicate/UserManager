@@ -54,7 +54,7 @@
 		$.oajax({
 			url: this.a._data.rest+'Users/'+id,
 			jso_provider: "uvicate",
-			jso_allowia: false,
+			jso_allowia: true,
 			jso_scopes: ["profile"],
 			dataType: 'json',
 			success: function(data) {
