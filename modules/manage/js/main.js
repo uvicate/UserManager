@@ -31,20 +31,10 @@
 	};
 
 	Module.prototype.get_users = function(callback) {
-		/*var j = {
-			url: this.a._data.rest+'Users/',
-			mode: 'GET',
-			div: undefined,
-			cache: true,
-			response: 'object',
-			headerValue: 'application/json'
-		}
-
-		new Vi(j).ajax(callback);*/
 		$.oajax({
 			url: this.a._data.rest+'Users/',
 			jso_provider: "uvicate",
-			jso_allowia: true,
+			jso_allowia: false,
 			jso_scopes: ["profile"],
 			dataType: 'json',
 			success: function(data) {
@@ -134,7 +124,7 @@
 		$.oajax({
 			url: this.a._data.rest+'Users/'+user.id,
 			jso_provider: "uvicate",
-			jso_allowia: true,
+			jso_allowia: false,
 			jso_scopes: ["profile"],
 			dataType: 'json',
 			success: function(data) {
@@ -192,7 +182,6 @@
 			btn.setAttribute('disabled', 'disabled');
 
 			this._t.update_user(this._user, function(){
-				console.log(':3');
 				btn.removeAttribute('disabled');
 				l.stop();
 
@@ -305,23 +294,13 @@
 				jso_scopes: ["profile"],
 				dataType: 'json',
 				type: 'PUT',
+				headerValue: 'application/x-www-form-urlencoded',
 				data: newdata.basic,
 				success: function(data) {
 					console.log('response', data);
 					callback(data);
 				}
 			});
-
-			/*var j = {
-				url: this.a._data.rest+'Users/'+user.id,
-				mode: 'PUT',
-				div: undefined,
-				cache: true,
-				response: 'object',
-				data: newdata.basic
-			}
-			var t = this;
-			new Vi(j).ajax(callback);*/
 
 		}else{
 			callback();
