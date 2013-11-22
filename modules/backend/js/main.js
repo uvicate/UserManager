@@ -41,15 +41,12 @@
 			headerValue: 'application/json'
 		}
 
+		jso_wipe();
 		new Vi(j).ajax(callback);
 	};
 
 	Module.prototype.getUserData = function(callback) {
 		callback = (typeof callback === 'function') ? callback : function(){};
-
-		 /*jso_ensureTokens({
-			"uvicate": []
-		});*/
 
 		jso_dump();
 
