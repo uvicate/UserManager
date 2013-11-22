@@ -70,16 +70,34 @@ window.dhtmlHistory.create({
 	};
 
 	Main.prototype.verifyIdentity = function(callback) {
-		callback = (typeof callback === 'function') ? callback : function(){};
-		var j = {
+		jso_configure({
+			"uvicate": {
+				client_id: "victor",
+				redirect_uri: "http://victor/Desarrollos/UserManager/",
+				authorization: "http://victor/Desarrollos/Users/oauth/2/login.php",
+				isDefault: true
+				}
+		});
+
+		 jso_ensureTokens({
+			// "facebook": ["read_stream"],
+			"uvicate": [],
+			// "instagram": ["basic", "likes"]
+		});
+
+		jso_dump();
+
+		var t = this;
+		$.oajax({
 			url: this.a._data.rest+'Members/',
-			mode: 'GET',
-			div: undefined,
-			cache: true,
-			response: 'object',
-			headerValue: 'application/json'
-		}
-		new Vi(j).ajax(callback);
+			jso_provider: "uvicate",
+			jso_allowia: true,
+			jso_scopes: ["profile"],
+			dataType: 'json',
+			success: function(data) {
+				callback(data);
+			}
+		});
 	};
 
 	Main.prototype.handleURL = function(url) {

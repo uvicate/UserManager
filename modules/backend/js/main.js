@@ -46,16 +46,16 @@
 		callback = (typeof callback === 'function') ? callback : function(){};
 
 		var id = getCookie(this.a._data.id);
-		var j = {
+		$.oajax({
 			url: this.a._data.rest+'Users/'+id,
-			mode: 'GET',
-			div: undefined,
-			cache: true,
-			response: 'object',
-			headerValue: 'application/json'
-		}
-
-		new Vi(j).ajax(callback);
+			jso_provider: "uvicate",
+			jso_allowia: true,
+			jso_scopes: ["profile"],
+			dataType: 'json',
+			success: function(data) {
+				callback(data);
+			}
+		});
 	};
 
 	Module.prototype.render_personalinfo = function(data) {

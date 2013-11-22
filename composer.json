@@ -2,6 +2,7 @@
     "require": {
         "uvicate/webapp": "dev-master",
         "uvicate/ladda": "dev-master",
+        "uvicate/jso": "dev-master",
         "twitter/bootstrap": "dev-master"
     },
     "minimum-stability": "dev"

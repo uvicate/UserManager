@@ -31,7 +31,7 @@
 	};
 
 	Module.prototype.get_users = function(callback) {
-		var j = {
+		/*var j = {
 			url: this.a._data.rest+'Users/',
 			mode: 'GET',
 			div: undefined,
@@ -40,7 +40,17 @@
 			headerValue: 'application/json'
 		}
 
-		new Vi(j).ajax(callback);
+		new Vi(j).ajax(callback);*/
+		$.oajax({
+			url: this.a._data.rest+'Users/',
+			jso_provider: "uvicate",
+			jso_allowia: true,
+			jso_scopes: ["profile"],
+			dataType: 'json',
+			success: function(data) {
+				callback(data);
+			}
+		});
 	};
 
 	Module.prototype.render_users = function(users) {
@@ -121,17 +131,16 @@
 	};
 
 	Module.prototype.get_user_data = function(user, callback) {
-		var j = {
+		$.oajax({
 			url: this.a._data.rest+'Users/'+user.id,
-			mode: 'GET',
-			div: undefined,
-			cache: true,
-			response: 'object',
-			headerValue: 'application/json'
-		}
-
-		var t = this;
-		new Vi(j).ajax(callback);
+			jso_provider: "uvicate",
+			jso_allowia: true,
+			jso_scopes: ["profile"],
+			dataType: 'json',
+			success: function(data) {
+				callback(data);
+			}
+		});
 	};
 
 	Module.prototype.load_user_data = function(user) {
@@ -183,6 +192,7 @@
 			btn.setAttribute('disabled', 'disabled');
 
 			this._t.update_user(this._user, function(){
+				console.log(':3');
 				btn.removeAttribute('disabled');
 				l.stop();
 
@@ -265,20 +275,20 @@
 		btn.addEventListener('click', function(){
 			l.start();
 
-			var j = {
-				url: this._t.a._data.rest+'Users/'+this._user.id,
-				mode: 'DELETE',
-				div: undefined,
-				cache: true,
-				response: 'object',
-				headerValue: 'application/json'
-			}
-
 			var t = this._t;
-			new Vi(j).ajax(function(){
-				l.stop();
-				t.init_users();
+			$.oajax({
+				url: this._t.a._data.rest+'Users/'+this._user.id,
+				jso_provider: "uvicate",
+				jso_allowia: true,
+				jso_scopes: ["profile"],
+				dataType: 'json',
+				type: 'DELETE',
+				success: function(data) {
+					l.stop();
+					t.init_users();
+				}
 			});
+
 		}, false);
 	};
 
@@ -288,7 +298,21 @@
 		var newdata = this.get_user_local_data();
 
 		if(JSON.stringify(user) !== JSON.stringify(newdata)){
-			var j = {
+			$.oajax({
+				url: this.a._data.rest+'Users/'+user.id,
+				jso_provider: "uvicate",
+				jso_allowia: true,
+				jso_scopes: ["profile"],
+				dataType: 'json',
+				type: 'PUT',
+				data: newdata.basic,
+				success: function(data) {
+					console.log('response', data);
+					callback(data);
+				}
+			});
+
+			/*var j = {
 				url: this.a._data.rest+'Users/'+user.id,
 				mode: 'PUT',
 				div: undefined,
@@ -296,9 +320,9 @@
 				response: 'object',
 				data: newdata.basic
 			}
-
 			var t = this;
-			new Vi(j).ajax(callback);
+			new Vi(j).ajax(callback);*/
+
 		}else{
 			callback();
 		}
@@ -389,20 +413,20 @@
 			if(data.password === data.password_2){
 				l.start();
 
-				var j = {
-					url: this._t.a._data.rest+'Users/create',
-					mode: 'POST',
-					div: undefined,
-					cache: true,
-					response: 'object',
-					data: data
-				}
-
 				var t = this._t;
-				new Vi(j).ajax(function(r){
-					if(r !== null){
-						t.init_users();
-						l.stop();
+				$.oajax({
+					url: this._t.a._data.rest+'Users/create',
+					jso_provider: "uvicate",
+					jso_allowia: true,
+					jso_scopes: ["profile"],
+					dataType: 'json',
+					type: 'POST',
+					data: data,
+					success: function(r) {
+						if(r !== null){
+							t.init_users();
+							l.stop();
+						}
 					}
 				});
 			}

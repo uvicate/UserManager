@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "548ca3d199b76c6ff7f66f1ae22b5fb4",
+    "hash": "5446fd1287d06aba28de782368403407",
     "packages": [
         {
             "name": "twitter/bootstrap",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "2172e2ea8a79f8c5d43863d83ff31b50abb391a0"
+                "reference": "6ed5a844a8ca3582240ddda70d63a3d7bfea7c50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/2172e2ea8a79f8c5d43863d83ff31b50abb391a0",
-                "reference": "2172e2ea8a79f8c5d43863d83ff31b50abb391a0",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6ed5a844a8ca3582240ddda70d63a3d7bfea7c50",
+                "reference": "6ed5a844a8ca3582240ddda70d63a3d7bfea7c50",
                 "shasum": ""
             },
             "type": "library",
@@ -45,7 +45,53 @@
                 "bootstrap",
                 "css"
             ],
-            "time": "2013-11-19 03:29:08"
+            "time": "2013-11-19 22:15:09"
+        },
+        {
+            "name": "uvicate/jso",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uvicate/jso.git",
+                "reference": "d9b78ffb527a56fe21ae5360f69ce8fee1770b4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uvicate/jso/zipball/d9b78ffb527a56fe21ae5360f69ce8fee1770b4b",
+                "reference": "d9b78ffb527a56fe21ae5360f69ce8fee1770b4b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "uVicate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Victor Quiroz",
+                    "email": "victorhqc@gmail.com",
+                    "homepage": "http://victorhqc.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Andreas Åkre Solberg",
+                    "email": "andreas.solberg@uninett.no",
+                    "homepage": "http://rnd.feide.no",
+                    "role": "Developer"
+                }
+            ],
+            "description": "General Class User",
+            "homepage": "https://github.com/uvicate/jso",
+            "keywords": [
+                "javascript",
+                "oauth"
+            ],
+            "time": "2013-11-21 18:42:29"
         },
         {
             "name": "uvicate/ladda",
@@ -96,12 +142,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uvicate/WebApp.git",
-                "reference": "24835e230f739ad8872e2f084dd6557db823725b"
+                "reference": "af006931f3a8b41b75399e86246ab8549c5de186"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uvicate/WebApp/zipball/24835e230f739ad8872e2f084dd6557db823725b",
-                "reference": "24835e230f739ad8872e2f084dd6557db823725b",
+                "url": "https://api.github.com/repos/uvicate/WebApp/zipball/af006931f3a8b41b75399e86246ab8549c5de186",
+                "reference": "af006931f3a8b41b75399e86246ab8549c5de186",
                 "shasum": ""
             },
             "type": "library",
@@ -124,7 +170,7 @@
                 "translate",
                 "webapp"
             ],
-            "time": "2013-11-02 19:42:34"
+            "time": "2013-11-15 17:37:24"
         }
     ],
     "packages-dev": [
@@ -137,6 +183,7 @@
     "stability-flags": {
         "uvicate/webapp": 20,
         "uvicate/ladda": 20,
+        "uvicate/jso": 20,
         "twitter/bootstrap": 20
     },
     "platform": [
