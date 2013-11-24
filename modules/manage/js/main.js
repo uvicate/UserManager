@@ -136,6 +136,7 @@
 	Module.prototype.load_user_data = function(user) {
 
 		var container = document.getElementById('user-info');
+		container.innerHTML = '';
 		container._user = user;
 
 		var img = Application.getGravatarImg(user.basic.email, 250);
@@ -259,24 +260,33 @@
 		btn._user = user;
 		btn._t = this;
 
-		var l = Ladda.create( btn );
+		//var l = Ladda.create( btn );
 		
 		btn.addEventListener('click', function(){
-			l.start();
-
 			var t = this._t;
-			$.oajax({
-				url: this._t.a._data.rest+'Users/'+this._user.id,
-				jso_provider: "uvicate",
-				jso_allowia: true,
-				jso_scopes: ["profile"],
-				dataType: 'json',
-				type: 'DELETE',
-				success: function(data) {
-					l.stop();
-					t.init_users();
-				}
+			var user = this._user;
+
+			var title = t.a.current.getText('remove-title');
+			var description = t.a.current.getText('remove-description') + user.fullname;
+			var message = t.a.current.getText('remove-message');
+
+			t.call_modal(title, description, message, function(modal){
+				$.oajax({
+					url: t.a._data.rest+'Users/'+user.id,
+					jso_provider: "uvicate",
+					jso_allowia: true,
+					jso_scopes: ["profile"],
+					dataType: 'json',
+					type: 'DELETE',
+					success: function(data) {
+						modal.vaporize();
+						t.init_users();
+					}
+				});	
 			});
+			//l.start();
+
+			/**/
 
 		}, false);
 	};
@@ -428,7 +438,39 @@
 
 		this.a.div = '#sub-content';
 		var t = this;
-		this.a.current.start(callback, params);
+		$(this.a.div).stop(true, true).fadeOut('fast', function(){
+			t.a.current.start(function(){
+				$(t.a.div).fadeIn('fast');
+				callback();
+			}, params);
+		})
+	};
+
+	Module.prototype.call_modal = function(title, description, message, action) {
+		var accept_text = this.a.current.getText('accept-btn');
+
+		var jm = {
+			title:title, 
+			subtitle:description, 
+			message: message, 
+			createHelper: function(modal){
+				setTimeout(function(){
+					modal.show();
+				}, 50);
+			},
+			actions: {
+				accept: {
+					text: accept_text,
+					icon: 'glyphicon glyphicon-ok',
+					clas: 'btn btn-success',
+					action: function(modal){
+						action(modal);
+					}
+				}
+			}
+		};
+	
+		new Modal(jm);
 	};
 
 	var m = new Module(App);

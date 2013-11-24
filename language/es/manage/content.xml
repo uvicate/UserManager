@@ -15,5 +15,11 @@
 		<new-btn>Nuevo usuario </new-btn>
 		
 		<save-btn>Guardar cambios </save-btn>
+
+		<remove-title>Borrar usuario</remove-title>
+		<remove-description>Estás a punto de eliminar a </remove-description>
+		<remove-message>Una vez borrado, el usuario no puede ser recuperado, perdiendo todos sus datos e información personal. Por favor, ten cuidado al realizar esta acción.</remove-message>
+
+		<accept-btn>Aceptar</accept-btn>
 	</dom>
 </content>
