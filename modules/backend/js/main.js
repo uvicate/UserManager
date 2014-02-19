@@ -55,7 +55,7 @@
 			url: this.a._data.rest+'Users/'+id,
 			jso_provider: "uvicate",
 			jso_allowia: true,
-			jso_scopes: ["profile"],
+			jso_scopes: ["basic_profile", "full_profile"],
 			dataType: 'json',
 			success: function(data) {
 				callback(data);

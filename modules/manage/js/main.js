@@ -35,7 +35,7 @@
 			url: this.a._data.rest+'Users/',
 			jso_provider: "uvicate",
 			jso_allowia: false,
-			jso_scopes: ["profile"],
+			jso_scopes: ["basic_profile"],
 			dataType: 'json',
 			success: function(data) {
 				callback(data);
@@ -125,7 +125,7 @@
 			url: this.a._data.rest+'Users/'+user.id,
 			jso_provider: "uvicate",
 			jso_allowia: false,
-			jso_scopes: ["profile"],
+			jso_scopes: ["full_profile"],
 			dataType: 'json',
 			success: function(data) {
 				callback(data);
@@ -275,7 +275,7 @@
 					url: t.a._data.rest+'Users/'+user.id,
 					jso_provider: "uvicate",
 					jso_allowia: true,
-					jso_scopes: ["profile"],
+					jso_scopes: ["full_profile"],
 					dataType: 'json',
 					type: 'DELETE',
 					success: function(data) {
@@ -285,9 +285,6 @@
 				});	
 			});
 			//l.start();
-
-			/**/
-
 		}, false);
 	};
 
@@ -301,7 +298,7 @@
 				url: this.a._data.rest+'Users/'+user.id,
 				jso_provider: "uvicate",
 				jso_allowia: true,
-				jso_scopes: ["profile"],
+				jso_scopes: ["full_profile"],
 				dataType: 'json',
 				type: 'PUT',
 				headerValue: 'application/x-www-form-urlencoded',
@@ -407,7 +404,7 @@
 					url: this._t.a._data.rest+'Users/create',
 					jso_provider: "uvicate",
 					jso_allowia: true,
-					jso_scopes: ["profile"],
+					jso_scopes: ["full_profile"],
 					dataType: 'json',
 					type: 'POST',
 					data: data,
